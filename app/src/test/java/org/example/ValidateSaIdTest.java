@@ -42,4 +42,9 @@ public class ValidateSaIdTest {
     void invalidCitizenshipFails() {
         assertFalse(ValidateSaId.isIdNumberValid("2001014800286")); // position 10 must be '0' or '1'
     }
+
+    @Test
+    void invalidChecksumFails() {
+        assertFalse(ValidateSaId.isIdNumberValid("2001014800087")); // change last digit of a known valid ID
+    }
 }
