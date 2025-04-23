@@ -37,4 +37,9 @@ public class ValidateSaIdTest {
     void invalidDayFails() {
         assertFalse(ValidateSaId.isIdNumberValid("2002304800086")); // Feb 30
     }
+
+    @Test
+    void invalidCitizenshipFails() {
+        assertFalse(ValidateSaId.isIdNumberValid("2001014800286")); // position 10 must be '0' or '1'
+    }
 }
