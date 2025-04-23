@@ -1,5 +1,6 @@
 package org.example;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -9,5 +10,15 @@ public class ValidateSaIdTest {
     void validIdsShouldPass() {
         assertTrue(ValidateSaId.isIdNumberValid("2001014800086"));
         assertTrue(ValidateSaId.isIdNumberValid("2909035800085"));
+    }
+
+    @Test
+    void tooShortFails() {
+        assertFalse(ValidateSaId.isIdNumberValid("200101480008"));
+    }
+
+    @Test
+    void tooLongFails() {
+        assertFalse(ValidateSaId.isIdNumberValid("20010148000861"));
     }
 }
