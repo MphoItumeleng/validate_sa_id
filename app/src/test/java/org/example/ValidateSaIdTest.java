@@ -26,4 +26,15 @@ public class ValidateSaIdTest {
     void nonNumericFails() {
         assertFalse(ValidateSaId.isIdNumberValid("20010A4800086"));
     }
+
+    @Test
+    void invalidMonthFails() {
+        assertFalse(ValidateSaId.isIdNumberValid("2000014800086")); // month 00
+        assertFalse(ValidateSaId.isIdNumberValid("2013134800086")); // month 13
+    }
+
+    @Test
+    void invalidDayFails() {
+        assertFalse(ValidateSaId.isIdNumberValid("2002304800086")); // Feb 30
+    }
 }
