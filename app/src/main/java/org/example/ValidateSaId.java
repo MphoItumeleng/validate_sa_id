@@ -23,6 +23,11 @@ public class ValidateSaId {
         if (day < 1 || day > maxDay)
             return false;
 
+        char citizen = idNumber.charAt(10);
+
+        if (citizen != '0' && citizen != '1')
+            return false;
+
         // If all checks pass
         return true;
     }
