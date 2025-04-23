@@ -21,4 +21,9 @@ public class ValidateSaIdTest {
     void tooLongFails() {
         assertFalse(ValidateSaId.isIdNumberValid("20010148000861"));
     }
+
+    @Test
+    void nonNumericFails() {
+        assertFalse(ValidateSaId.isIdNumberValid("20010A4800086"));
+    }
 }
