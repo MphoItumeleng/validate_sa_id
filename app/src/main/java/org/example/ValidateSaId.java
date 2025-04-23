@@ -1,6 +1,7 @@
 package org.example;
 
 public class ValidateSaId {
+
     public static boolean isIdNumberValid(String idNumber) {
         // Basic format checks
         if (idNumber == null || idNumber.length() != 13 || !idNumber.matches("\\d+")) {
@@ -23,12 +24,32 @@ public class ValidateSaId {
         if (day < 1 || day > maxDay)
             return false;
 
+        // Citizenship digit (11th digit must be 0 or 1)
         char citizen = idNumber.charAt(10);
-
         if (citizen != '0' && citizen != '1')
+            return false;
+
+        // Luhn algorithm validation
+        if (!luhnCheck(idNumber))
             return false;
 
         // If all checks pass
         return true;
+    }
+
+    private static boolean luhnCheck(String s) {
+        int sum = 0;
+        boolean alt = false;
+        for (int i = s.length() - 1; i >= 0; i--) {
+            int n = s.charAt(i) - '0';
+            if (alt) {
+                n *= 2;
+                if (n > 9)
+                    n = (n % 10) + 1;
+            }
+            sum += n;
+            alt = !alt;
+        }
+        return sum % 10 == 0;
     }
 }
